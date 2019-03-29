@@ -31,6 +31,7 @@ public class Account {
         amount = _amount;
         closeDate = _closeDate;
         accountName = _accountName;
+        contactsList = new ContactsList();
     }
 
     //Setters
