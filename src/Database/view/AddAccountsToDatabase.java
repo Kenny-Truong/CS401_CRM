@@ -1,4 +1,4 @@
-package Database.model;
+package Database.view;
 
 import Accounts.model.Account;
 import Accounts.model.AccountList;
@@ -34,11 +34,7 @@ public class AddAccountsToDatabase implements MenuItem {
         try {
             // Load Derby's network client driver
             Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IllegalAccessException | InstantiationException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -106,5 +102,10 @@ public class AddAccountsToDatabase implements MenuItem {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    @Override
+    public String toString() {
+        return "Add Accounts to Database";
     }
 }

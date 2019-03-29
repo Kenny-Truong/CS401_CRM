@@ -1,4 +1,4 @@
-package Database.model;
+package Database.view;
 
 import Menu.MenuItem;
 import java.sql.*;
