@@ -54,7 +54,7 @@ public class CreateDatabase implements MenuItem {
 
             // Create ACCOUNT Table
             stat.executeUpdate("CREATE TABLE ACCOUNT (accountId INT PRIMARY KEY, amount INT, "
-                    + "closeDate INT, accountName CHAR(100))");
+                    + "closeDate BIGINT, accountName CHAR(100))");
 
             // Create CONTACT Table
             stat.executeUpdate("CREATE TABLE CONTACT (name CHAR(50),"

@@ -8,6 +8,7 @@ import Menu.MenuItem;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -19,12 +20,19 @@ import java.sql.SQLException;
 public class AddAccountsToDatabase implements MenuItem {
 
     // URL to where database is created
-    private static final String URL = "jdbc:derby://localhost:1527/CRM";
+    private final String URL;
     private final AccountList accountList;
 
     // Constructor takes current AccountList
     public AddAccountsToDatabase(AccountList accountList) {
         this.accountList = accountList;
+        URL = "jdbc:derby://localhost:1527/CRM";
+    }
+    
+    // Constructor takes current AccountList and URL
+    public AddAccountsToDatabase(AccountList accountList, String URL) {
+        this.accountList = accountList;
+        this.URL = URL;
     }
 
     // Loads Apache Derby driver and called insert() to insert data to database
@@ -52,19 +60,20 @@ public class AddAccountsToDatabase implements MenuItem {
                 int accountId = account.getAccountId();
 
                 // Check if account exists in table
-                String checkRecordExists = "SELECT accountId FROM Account "
+                String checkRecordExists = "SELECT accountId FROM ACCOUNT "
                         + "WHERE accountId=" + Integer.toString(accountId);
                 PreparedStatement ps = connect.prepareStatement(checkRecordExists);
+                ResultSet res = ps.executeQuery();
 
                 // If it does not exist then insert account
-                if (!(ps.execute())) {
+                if (!(res.next())) {
                     int amount = account.getAmount();
                     // Convert clostDate to milliseconds
-                    long closeDate = account.getCloseDate().getTimeInMillis();
+                    int closeDate = (int) account.getCloseDate().getTimeInMillis();
                     String accountName = account.getAccountName();
                     ContactsList contactsList = account.getContactsList();
 
-                    String insertAccount = "INSERT INTO ACCOUNT VALUES (?, ?, ?, '?')";
+                    String insertAccount = "INSERT INTO ACCOUNT VALUES (?, ?, ?, ?)";
                     ps = connect.prepareStatement(insertAccount);
                     ps.setInt(1, accountId);
                     ps.setInt(2, amount);
@@ -77,7 +86,7 @@ public class AddAccountsToDatabase implements MenuItem {
                         String name = contact.getName();
                         String email = contact.getEmail();
                         String phoneNumber = contact.getPhoneNumber();
-                        String insertContacts = "INSERT INTO CONTACT VALUES ('?', '?', '?')";
+                        String insertContacts = "INSERT INTO CONTACT VALUES (?, ?, ?)";
                         ps = connect.prepareStatement(insertContacts);
 
                         ps.setString(1, name);
@@ -86,7 +95,7 @@ public class AddAccountsToDatabase implements MenuItem {
                         ps.executeUpdate();
 
                         // Insert relation between Account and Contacts
-                        String insertWorksFor = "INSERT INTO WORKS_FOR VALUES ('?', ?)";
+                        String insertWorksFor = "INSERT INTO WORKS_FOR VALUES (?, ?)";
                         ps = connect.prepareStatement(insertWorksFor);
 
                         ps.setString(1, email);
@@ -108,4 +117,15 @@ public class AddAccountsToDatabase implements MenuItem {
     public String toString() {
         return "Add Accounts to Database";
     }
+    
+    // Getters and Setters
+
+    public String getURL() {
+        return URL;
+    }
+
+    public AccountList getAccountList() {
+        return accountList;
+    }
+    
 }
