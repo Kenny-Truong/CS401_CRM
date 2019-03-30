@@ -1,10 +1,10 @@
-package Opportunities;
+package Opportunities.View;
 
 import java.util.List;
 
 import Menu.MenuItem;
-import Opportunities.opportunity;
-import Opportunities.opportunityList;
+import Opportunities.Model.opportunity;
+import Opportunities.Model.opportunityList;
 
 public class OpportunitySummary implements MenuItem  {
     private opportunityList OpportunityList;

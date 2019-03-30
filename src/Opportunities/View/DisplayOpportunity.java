@@ -1,9 +1,11 @@
-package Opportunities;
+package Opportunities.View;
 
 import java.util.Calendar;
 import java.util.Scanner;
 
 import Menu.MenuItem;
+import Opportunities.Model.opportunity;
+import Opportunities.Model.opportunityList;
 
 public class DisplayOpportunity  implements MenuItem {
     opportunityList OpportunityList;

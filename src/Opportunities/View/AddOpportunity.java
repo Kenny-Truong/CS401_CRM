@@ -1,12 +1,13 @@
-package Opportunities;
+package Opportunities.View;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
+import Lead.Model.Lead;
 import Menu.MenuItem;
-import Opportunities.opportunity;
-import Opportunities.opportunityList;
+import Opportunities.Model.opportunity;
+import Opportunities.Model.opportunityList;
 
 public class AddOpportunity implements MenuItem {
 	private opportunityList OpportunityList;
@@ -16,7 +17,7 @@ public class AddOpportunity implements MenuItem {
 public AddOpportunity(opportunityList _OpportunityList)
 {
 
- OpportunityList = _OpportunityList;
+ OpportunityList=_OpportunityList;
 }
 
 public void execute(){
@@ -105,10 +106,17 @@ public void execute(){
 
 }
 
+
+
+	
+
+
+
+
 @Override
 public String toString()  
 { 
-	return "Create an Opportunity";
+	return "Opportunity created"; 
 	}
 }
 

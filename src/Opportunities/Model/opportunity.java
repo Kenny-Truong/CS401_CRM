@@ -1,12 +1,12 @@
-package Opportunities;
+package Opportunities.Model;
 import java.util.Calendar;
 import java.util.Date;
 
 public class opportunity {
-
-	  private String accountName;
+      
+	  private String accountName; 
 	    private int opportunityid;
-
+        public static String Status;
 	    private int amount;
 	    private Calendar  closeDate;
 	    private String contract;
@@ -22,20 +22,21 @@ public class opportunity {
 	   public opportunity()
 	   {
 		   amount=-1;
+		   Status = "Qualified";
 	   }
 	   
 	   
 	  public opportunity
 	  ( String accountName,
-			  int opportunityid,
+	    int opportunityid,
 	    int amount,
-	    Date closeDate,
+	    Calendar closeDate,
 	    String contract,
 	    String createdBy,
 	    String Description,
 	    int ExpectedRevenue,
 	    String OpporutnityName,
-	     String OpporutnityOwner,
+	    String OpporutnityOwner,
 	    String primaryCampaignSource,
 	    String Stage,
 	    String type){

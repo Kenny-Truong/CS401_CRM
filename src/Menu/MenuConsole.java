@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Menu;
 
 import java.util.List;
 import java.util.Scanner;
 
-/**
- *
- * @author Jomar
- */
+
 public class MenuConsole {
      public final static Scanner STDIN = new Scanner(System.in);
      
@@ -23,7 +15,7 @@ public class MenuConsole {
      }
      public static <T> int getChoice (List<T> options){
          prompt(options);
-         System.out.println("Choose an option: (0 - " + (options.size() - 1) + "): ");
+         System.out.println("Choose an option: (0 - " + (options.size() - 1)+")");
          return STDIN.nextInt();
      }
 }
